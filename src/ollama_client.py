@@ -2,6 +2,7 @@ import json
 import logging
 import requests
 from typing import Dict, List, Optional, Any
+import re
 
 from config import OLLAMA_API_HOST
 
@@ -36,7 +37,7 @@ class OllamaClient:
             generated_text = result.get("response", "")
             logger.debug(f"Generated {len(generated_text)} characters")
             
-            return generated_text
+            return re.sub(r'\s*<think>[\s\S]*?</think>\s*', generated_text, '')
         
         except requests.exceptions.RequestException as e:
             logger.error(f"Error calling Ollama API: {e}")
@@ -66,7 +67,7 @@ class OllamaClient:
             content = message.get("content", "")
             logger.debug(f"Generated {len(content)} characters")
             
-            return content
+            return re.sub(r'\s*<think>[\s\S]*?</think>\s*', content, '')
         
         except requests.exceptions.RequestException as e:
             logger.error(f"Error calling Ollama API: {e}")

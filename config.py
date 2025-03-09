@@ -12,7 +12,7 @@ os.makedirs(LOGS_DIR, exist_ok=True)
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 # Ollama settings
-DEFAULT_MODEL = "mistral-nemo"  # Default model to use
+DEFAULT_MODEL = "deepseek-r1:14b"  # Default model to use
 OLLAMA_API_HOST = "http://localhost:11434"  # Ollama API host
 
 # Logging settings
